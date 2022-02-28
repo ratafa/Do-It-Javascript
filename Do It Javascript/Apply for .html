@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>DOM - Create & Add Node</title>
+	<style>
+		.del {
+			margin-left: 150px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<h1>참가 신청</h1>
+		<form action="">
+			<input type="text" id="userName" placeholder="이름" required>
+			<button id="register">신청</button>
+		</form>
+		<hr>
+		<div id="nameList"></div>
+	</div>
+	
+	<script>
+    const register = document.querySelector("#register")
+
+        function newRegister() {
+            const newP = document.createElement("p");
+            const userName = document.querySelector("#userName");
+            const newText = document.createTextNode(userName.value);
+            newP.appendChild(newText);
+            const nameList = document.querySelector("#nameList");
+            nameList.appendChild(newP);
+            userName.value="";
+
+			const delBtn = document.createElement("span");
+			const delNode = document.createTextNode("X");
+			delBtn.setAttribute("class", "del");
+			delBtn.setAttribute("style", "cursor : pointer");
+			delBtn.appendChild(delNode);
+			newP.appendChild(delBtn);
+
+
+			
+			const removeUser = document.querySelectorAll(".del");
+
+			for(var i=0; i<removeUser.length; i++) {
+				removeUser[i].addEventListener("click",function() {
+					if(this.parentNode.parentNode) {
+						this.parentNode.parentNode.removeChild(this.parentNode);
+					}	
+				}); 
+			}
+        };
+
+
+    
+    register.addEventListener("click", newRegister);
+    
+    </script>
+</body>
+</html>

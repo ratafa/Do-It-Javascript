@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+		<div class="day1">
+			<h3>우리 만난지</h3>
+			<p id="accent" class="accent"><span style="font-size:0.6em; font-style:italic">며칠?</span></p>
+			</div>
+			<div class="bar">기념일 계산</div>
+			<div class="day2">
+				<ul>
+					<li class="item-title">100일</li>         
+					<li class="item-date" id="date100"></li>
+				</ul>
+				<ul>
+					<li class="item-title">200일</li>
+					<li class="item-date" id="date200"></li>
+				</ul>     
+				<ul>
+						<li class="item-title">1년</li>
+						<li class="item-date" id="date365"></li>
+					</ul>      
+				<ul>
+							<li class="item-title">500일</li>
+							<li class="item-date" id="date500"></li>
+						</ul>
+
+						<ul>
+							<li class="item-title">내가 물어본 기념일</li>
+							<li class="item-date" id="date_someDay"></li>
+						</ul>      									     
+			</div>
+		</div>
+
+    <script>
+    const now = new Date();
+    const meetDay = new Date("2021-11-29");
+	const toNow = now.getTime();
+	const toMeetDay = meetDay.getTime();
+	const passedTime = toNow - toMeetDay;
+	const passedDay = Math.round(passedTime/(1000*60*60*24));
+	document.querySelector("#accent").innerHTML = passedDay + " 일";
+
+	// function after100(){
+	// 	const after100Time = toMeetDay + 100*(1000*60*60*24);
+	// 	const after100Day = new Date(after100Time);
+	// 	const after100Day_Year = after100Day.getFullYear();
+	// 	const after100Day_Month = after100Day.getMonth()+1;
+	// 	const after100Day_Date = after100Day.getDate();
+	// 	document.querySelector("#date100").innerHTML = "-> " + after100Day_Year + "년 " + after100Day_Month + "월 " + after100Day_Date + "일";
+	// };
+	// after100(); 
+	// -> 100일 말고도 200일 300일 1년 500일 등 다양한 기념일을 하나의 계산식으로 함수화.
+	function afterDay(someDay){
+		const afterTime = toMeetDay + someDay*(1000*60*60*24);
+		const afterDay = new Date(afterTime);
+		const afterDay_Year = afterDay.getFullYear();
+		const afterDay_Month = afterDay.getMonth()+1;
+		const afterDay_Date = afterDay.getDate();
+		document.querySelector("#date" + someDay).innerHTML = "-> " + afterDay_Year + "년 " + afterDay_Month + "월 " + afterDay_Date + "일";
+	};
+
+	function ask_afterDay() {
+		const askDay = prompt("원하는 기념일을 적어주세요");
+		const dafterTime = toMeetDay + askDay*(1000*60*60*24);
+		const dafterDay = new Date(dafterTime);
+		const dafterDay_Year = dafterDay.getFullYear();
+		const dafterDay_Month = dafterDay.getMonth()+1;
+		const dafterDay_Date = dafterDay.getDate();
+		document.querySelector("#date_someDay").innerHTML = "-> " + dafterDay_Year + "년 " + dafterDay_Month + "월 " + dafterDay_Date + "일"
+		};
+
+	afterDay(100);
+	afterDay(200);
+	afterDay(365);
+	afterDay(500);
+	ask_afterDay();
+    </script>
+</body>
+</html>

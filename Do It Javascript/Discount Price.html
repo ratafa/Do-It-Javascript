@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ui>
+        <li><input id="orginalPrice"></input></li>
+        <li><input id="rate"></input></li>
+        <li><button onclick="showPrice()">계산하기</button></li>
+        <li><div id="showResult"></div></li>
+    </ui>
+    <script>
+        function showPrice(){
+            var orginalPrice = document.querySelector("#orginalPrice").value;
+            var rate = document.querySelector("#rate").value;
+            var savePrice = orginalPrice * (rate/100);
+            var resultPrice = orginalPrice - savePrice;
+            document.querySelector("#showResult").innerHTML = "상품의 원래 가격은 " + orginalPrice + " 원이고, 할인율은 " + rate + "% 입니다." + "절약된 금액은 " + savePrice + " 이며 " + "최종 금액은 " + resultPrice + " 입니다.";
+        };
+    </script>
+</body>
+</html>
